@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "DinkieBitmap 7px";
+    src: url("/fonts/DinkieBitmap-7px.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "DinkieBitmap 9px";
+    src: url("/fonts/DinkieBitmap-9px.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Zpix";
+    src: url("/fonts/zpix.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@theme {
+    --color-nso-cyan: #90f4e4;
+    --color-nso-purple: #4d23cf;
+    --color-nso-light-pink: #f0d1f1;
+    --color-nso-dark-pink: #e6a2e4;
+
+    --font-nso-dinkie-9px: "DinkieBitmap 9px", "monospace";
+    --font-nso-dinkie-7px: "DinkieBitmap 7px", "monospace";
+    --font-nso-zpix: "Zpix", "monospace";
+}
