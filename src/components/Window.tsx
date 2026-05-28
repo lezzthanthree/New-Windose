@@ -17,7 +17,7 @@ export const Window = (prop: WindowProps) => {
                     <div className="bg-nso-purple min-h-4 min-w-4" />
                 </div>
             </div>
-            <div className="bg-white border-2 border-nso-purple my-1 border-box h-full flex-1">
+            <div className="bg-white border-2 border-nso-purple my-1 border-box flex flex-col flex-1">
                 {children}
             </div>
             <div className="flex flex-row">
