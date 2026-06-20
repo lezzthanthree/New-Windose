@@ -4,10 +4,11 @@ import { useRef } from "react";
 interface WindowProps {
     title: string;
     children?: React.ReactNode;
+    stateHandler?: (state: boolean) => void;
 }
 
 export const Window = (prop: WindowProps) => {
-    const { title, children } = prop;
+    const { title, children, stateHandler } = prop;
 
     const nodeRef = useRef(null);
 
@@ -30,8 +31,13 @@ export const Window = (prop: WindowProps) => {
                         {title}
                     </span>
                     <div className="flex gap-1 h-5 shrink-0">
-                        {/* image is 20x20 */}
-                        <img src="img/button_close.png" className="w-5 h-5" />
+                        {stateHandler && (
+                            <img
+                                src="img/button_close.png"
+                                className="w-5 h-5"
+                                onClick={() => stateHandler(false)}
+                            />
+                        )}
                     </div>
                 </div>
                 <div className="bg-white border-2 border-nso-purple my-1 border-box flex flex-col flex-1">
