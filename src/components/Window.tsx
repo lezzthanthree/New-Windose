@@ -5,10 +5,12 @@ interface WindowProps {
     title: string;
     children?: React.ReactNode;
     stateHandler?: (state: boolean) => void;
+    x?: number;
+    y?: number;
 }
 
 export const Window = (prop: WindowProps) => {
-    const { title, children, stateHandler } = prop;
+    const { title, children, stateHandler, x, y } = prop;
 
     const nodeRef = useRef(null);
 
@@ -16,7 +18,7 @@ export const Window = (prop: WindowProps) => {
         <Draggable
             nodeRef={nodeRef}
             handle="#title-bar"
-            defaultPosition={{ x: 100, y: 100 }}
+            defaultPosition={{ x: x ?? 100, y: y ?? 100 }}
         >
             <div
                 className="absolute border-2 border-nso-purple bg-nso-cyan px-1 pt-1 box-border flex flex-col shadow-[4px_4px_#4d23cf55] min-w-64 min-h-64"

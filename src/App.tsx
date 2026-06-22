@@ -1,3 +1,4 @@
+import Icon from "./components/Icon";
 import { Window } from "./components/Window";
 import { useWindowState } from "./states/windowStates";
 
@@ -6,7 +7,14 @@ function App() {
 
     return (
         <div className="w-screen h-screen bg-[url('/img/nso_bg_1080.png')] flex flex-col items-center justify-center">
-            <div className="flex flex-1 w-full" id="desktop">
+            <div className="flex flex-1 w-full p-8" id="desktop">
+                <div className="flex flex-col gap-4">
+                    <Icon image="img/icons/tinder.png" name="Speed Dial" />
+                    <Icon image="img/icons/search.png" name="Search" />
+                    <Icon image="img/icons/youtube.png" name="YouTube" />
+                    <Icon image="img/icons/twitter.png" name="Twitter" />
+                </div>
+
                 {speedDialWindow && (
                     <Window title="Test" stateHandler={setSpeedDialWindow}>
                         <div className="flex flex-row items-center justify-center flex-1 w-180">
