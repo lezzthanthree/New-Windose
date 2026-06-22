@@ -45,5 +45,8 @@ img {
     image-rendering: optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
     user-select: none;
+}
+
+.icon {
     pointer-events: none;
 }

@@ -9,10 +9,31 @@ function App() {
         <div className="w-screen h-screen bg-[url('/img/nso_bg_1080.png')] flex flex-col items-center justify-center">
             <div className="flex flex-1 w-full p-8" id="desktop">
                 <div className="flex flex-col gap-4">
-                    <Icon image="img/icons/tinder.png" name="Speed Dial" />
-                    <Icon image="img/icons/search.png" name="Search" />
-                    <Icon image="img/icons/youtube.png" name="YouTube" />
-                    <Icon image="img/icons/twitter.png" name="Twitter" />
+                    <Icon
+                        image="img/icons/tinder.png"
+                        name="Speed Dial"
+                        action={() => {
+                            setSpeedDialWindow(true);
+                        }}
+                    />
+                    <Icon
+                        image="img/icons/search.png"
+                        name="Search"
+                        action={() => {}}
+                    />
+                    <Icon
+                        image="img/icons/youtube.png"
+                        name="YouTube"
+                        action={() => {
+                            window.open("https://youtube.com", "_self");
+                        }}
+                        execute
+                    />
+                    <Icon
+                        image="img/icons/twitter.png"
+                        name="Twitter"
+                        action={() => {}}
+                    />
                 </div>
 
                 {speedDialWindow && (

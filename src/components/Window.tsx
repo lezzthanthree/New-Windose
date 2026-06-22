@@ -47,7 +47,7 @@ export const Window = (prop: WindowProps) => {
                         {stateHandler && (
                             <img
                                 src="img/button_close.png"
-                                className="w-5 h-5"
+                                className="w-5 h-5 icons"
                                 onClick={handleClose}
                             />
                         )}
