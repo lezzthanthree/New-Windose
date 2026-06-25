@@ -1,18 +1,30 @@
 import Draggable from "react-draggable";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useWindowState } from "../states/useWindowStates";
 
 interface WindowProps {
     title: string;
     children?: React.ReactNode;
     stateHandler?: (state: boolean) => void;
+    id: string;
     x?: number;
     y?: number;
 }
 
-export const Window = (prop: WindowProps) => {
-    const { title, children, stateHandler, x, y } = prop;
-
+export const Window: React.FC<WindowProps> = ({
+    title,
+    children,
+    stateHandler,
+    id,
+    x,
+    y,
+}) => {
     const nodeRef = useRef(null);
+
+    const { focusedWindow, setFocusedWindow, zCount, incrementZCount } =
+        useWindowState();
+
+    const [z, setZ] = useState(zCount);
 
     useEffect(() => {
         new Audio("snd/window_open.wav").play();
@@ -25,6 +37,15 @@ export const Window = (prop: WindowProps) => {
         stateHandler(false);
     };
 
+    const handleFocus = () => {
+        setFocusedWindow(id);
+        const nextZ = zCount + 1;
+        incrementZCount();
+        setZ(nextZ);
+    };
+
+    const active = focusedWindow == id;
+
     const defaultPosition =
         x !== undefined || y !== undefined
             ? { x: x ?? 0, y: y ?? 0 }
@@ -35,10 +56,14 @@ export const Window = (prop: WindowProps) => {
             nodeRef={nodeRef}
             handle="#title-bar"
             defaultPosition={defaultPosition}
+            onStart={handleFocus}
         >
             <div
-                className="absolute border-2 border-nso-purple bg-nso-cyan px-1 pt-1 box-border flex flex-col shadow-[4px_4px_#4d23cf55] min-w-64 min-h-64 pointer-events-auto"
+                id="window"
                 ref={nodeRef}
+                className={`absolute border-2 border-nso-purple ${active ? "bg-nso-cyan" : "bg-nso-gray"} px-1 pt-1 box-border flex flex-col shadow-[4px_4px_#4d23cf55] min-w-64 min-h-64 pointer-events-auto`}
+                style={{ zIndex: z }}
+                onClick={handleFocus}
             >
                 <div
                     className="flex flex-row items-center bg-nso-light-pink border-2 border-nso-purple box-border p-1 gap-1"
@@ -58,14 +83,23 @@ export const Window = (prop: WindowProps) => {
                         )}
                     </div>
                 </div>
-                <div className="bg-white border-2 border-nso-purple my-1 border-box flex flex-col flex-1">
+                <div
+                    id="content"
+                    className="bg-white border-2 border-nso-purple my-1 border-box flex flex-1"
+                >
                     {children}
                 </div>
-                <div className="flex flex-row">
+                <div id="small-boxes" className="flex flex-row">
                     <div className="h-2.5 w-12 bg-nso-dark-pink border-2 border-b-0 border-box border-nso-purple" />
-                    <div className="h-2 w-2 bg-nso-cyan border-2 border-nso-purple border-box ml-0.5" />
-                    <div className="h-2 w-2 bg-nso-cyan border-2 border-nso-purple border-box ml-0.5" />
-                    <div className="h-2 w-2 bg-nso-cyan border-2 border-nso-purple border-box ml-0.5" />
+                    <div
+                        className={`h-2 w-2 ${active ? "bg-nso-cyan" : "bg-nso-gray"} border-2 border-nso-purple border-box ml-0.5`}
+                    />
+                    <div
+                        className={`h-2 w-2 ${active ? "bg-nso-cyan" : "bg-nso-gray"} border-2 border-nso-purple border-box ml-0.5`}
+                    />
+                    <div
+                        className={`h-2 w-2 ${active ? "bg-nso-cyan" : "bg-nso-gray"} border-2 border-nso-purple border-box ml-0.5`}
+                    />
                 </div>
             </div>
         </Draggable>

@@ -1,42 +1,25 @@
 import React from "react";
 import Icon from ".//Icon";
 import { Window } from ".//Window";
-import { useWindowState } from "../states/windowStates";
+import { useWindowState } from "../states/useWindowStates";
 
 const Desktop: React.FC = () => {
-    const { speedDialWindow, setSpeedDialWindow } = useWindowState();
+    const { speedDialWindow, setSpeedDialWindow, openWindow } =
+        useWindowState();
 
     return (
         <div className="flex flex-1 w-full p-8 relative" id="desktop">
             <div
                 id="icon-area"
-                className="inset-8 flex absolute pointer-events-none overflow-hidden "
+                className="inset-8 flex absolute pointer-events-none overflow-hidden"
             >
                 <div className="flex flex-col gap-4 pointer-events-auto flex-wrap">
                     <Icon
                         image="img/icons/tinder.png"
                         name="Speed Dial"
                         action={() => {
-                            setSpeedDialWindow(true);
+                            openWindow("speedDial");
                         }}
-                    />
-                    <Icon
-                        image="img/icons/folder_open.png"
-                        name="folder_open"
-                        action={() => {}}
-                        execute
-                    />
-                    <Icon
-                        image="img/icons/folder_open.png"
-                        name="folder_open"
-                        action={() => {}}
-                        execute
-                    />
-                    <Icon
-                        image="img/icons/folder_open.png"
-                        name="folder_open"
-                        action={() => {}}
-                        execute
                     />
                     <Icon
                         image="img/icons/search.png"
@@ -59,7 +42,6 @@ const Desktop: React.FC = () => {
                         }}
                         execute
                     />
-                    
                 </div>
             </div>
 
@@ -70,10 +52,11 @@ const Desktop: React.FC = () => {
                 {speedDialWindow && (
                     <Window
                         title="Speed Dial"
+                        id="speedDial"
                         stateHandler={setSpeedDialWindow}
                     >
-                        <div className="flex flex-row items-center justify-center flex-1 w-180">
-                            Test
+                        <div className="flex flex-row items-center justify-center flex-1 w-180 h-128">
+                            Speed Dial
                         </div>
                     </Window>
                 )}
