@@ -10,15 +10,33 @@ const Desktop: React.FC = () => {
         <div className="flex flex-1 w-full p-8 relative" id="desktop">
             <div
                 id="icon-area"
-                className="inset-8 flex absolute pointer-events-none"
+                className="inset-8 flex absolute pointer-events-none overflow-hidden "
             >
-                <div className="flex flex-col gap-4 pointer-events-auto">
+                <div className="flex flex-col gap-4 pointer-events-auto flex-wrap">
                     <Icon
                         image="img/icons/tinder.png"
                         name="Speed Dial"
                         action={() => {
                             setSpeedDialWindow(true);
                         }}
+                    />
+                    <Icon
+                        image="img/icons/folder_open.png"
+                        name="folder_open"
+                        action={() => {}}
+                        execute
+                    />
+                    <Icon
+                        image="img/icons/folder_open.png"
+                        name="folder_open"
+                        action={() => {}}
+                        execute
+                    />
+                    <Icon
+                        image="img/icons/folder_open.png"
+                        name="folder_open"
+                        action={() => {}}
+                        execute
                     />
                     <Icon
                         image="img/icons/search.png"
@@ -41,6 +59,7 @@ const Desktop: React.FC = () => {
                         }}
                         execute
                     />
+                    
                 </div>
             </div>
 
@@ -49,7 +68,10 @@ const Desktop: React.FC = () => {
                 className="inset-0 flex absolute justify-center items-center pointer-events-none"
             >
                 {speedDialWindow && (
-                    <Window title="Test" stateHandler={setSpeedDialWindow}>
+                    <Window
+                        title="Speed Dial"
+                        stateHandler={setSpeedDialWindow}
+                    >
                         <div className="flex flex-row items-center justify-center flex-1 w-180">
                             Test
                         </div>

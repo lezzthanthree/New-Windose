@@ -11,8 +11,7 @@ const Taskbar: React.FC = () => {
         >
             <StartButton />
             <Separator />
-            <Separator />
-            <div id="tasks" className="flex-1 bg-amber-300 h-full"></div>
+            <div id="tasks" className="flex-1  h-full"></div>
             <Clock />
         </div>
     );

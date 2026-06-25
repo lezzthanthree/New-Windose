@@ -6,6 +6,6 @@ interface IWindowState {
 }
 
 export const useWindowState = create<IWindowState>((set) => ({
-    speedDialWindow: false,
+    speedDialWindow: true,
     setSpeedDialWindow: (state) => set({ speedDialWindow: state }),
 }));
