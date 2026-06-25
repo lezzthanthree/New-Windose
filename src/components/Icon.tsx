@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import Draggable from "react-draggable";
+import React from "react";
 
 interface IconProps {
     image: string;
@@ -14,48 +13,22 @@ const Icon: React.FC<IconProps> = ({
     action,
     execute = false,
 }) => {
-    const nodeRef = useRef(null);
-    const isDragging = useRef(false);
-
-    const handleStart = () => {
-        isDragging.current = false;
-    };
-
-    const handleDrag = () => {
-        isDragging.current = true;
-    };
-
-    const handleStop = () => {
+    const handleAction = () => {
         // If the item wasn't dragged, trigger the click action
-        if (!isDragging.current) {
-            if (execute) {
-                new Audio("snd/execute.wav")
-                    .play()
-                    .catch((e) => console.log(e));
-            }
-            action();
+        if (execute) {
+            new Audio("snd/execute.wav").play().catch((e) => console.log(e));
         }
+        action();
     };
 
     return (
-        <Draggable
-            nodeRef={nodeRef}
-            onDrag={handleDrag}
-            onStop={handleStop}
-            onStart={handleStart}
+        <div
+            className="flex flex-col items-center gap-2 font-nso-dinkie-7px text-nso-purple"
+            onClick={handleAction}
         >
-            <div
-                className="flex flex-col items-center gap-2 font-nso-dinkie-7px text-nso-purple"
-                ref={nodeRef}
-            >
-                <img
-                    src={image}
-                    alt=""
-                    className="h-16 w-16 object-cover icon"
-                />
-                <p>{name}</p>
-            </div>
-        </Draggable>
+            <img src={image} alt="" className="h-16 w-16 object-cover icon" />
+            <p>{name}</p>
+        </div>
     );
 };
 
