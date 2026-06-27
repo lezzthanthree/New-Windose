@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Icon from ".//Icon";
+import IconImage from "./IconImage";
 import { useWindowState } from "../hooks/useWindowStates";
 import SpeedDialWindow from "./Window/SpeedDial";
 
@@ -23,14 +23,14 @@ const Desktop: React.FC = () => {
                 className="inset-8 flex absolute pointer-events-none overflow-hidden"
             >
                 <div className="flex flex-col gap-4 pointer-events-auto flex-wrap">
-                    <Icon
+                    <IconImage
                         image="img/icons/tinder.png"
                         name="Speed Dial"
                         action={() => {
                             openWindow("speedDial");
                         }}
                     />
-                    <Icon
+                    <IconImage
                         image="img/icons/search.png"
                         name="Search"
                         action={() => {}}

@@ -1,20 +1,19 @@
 import React from "react";
 
-interface IconProps {
+interface IconImageProps {
     image: string;
     name: string;
     action: () => void;
     execute?: boolean;
 }
 
-const Icon: React.FC<IconProps> = ({
+const IconImage: React.FC<IconImageProps> = ({
     image,
     name,
     action,
     execute = false,
 }) => {
     const handleAction = () => {
-        // If the item wasn't dragged, trigger the click action
         if (execute) {
             new Audio("snd/execute.wav").play().catch((e) => console.log(e));
         }
@@ -32,4 +31,4 @@ const Icon: React.FC<IconProps> = ({
     );
 };
 
-export default Icon;
+export default IconImage;

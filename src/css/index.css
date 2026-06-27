@@ -25,6 +25,27 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "PixelMplus10 Bold";
+    src: url("/fonts/PixelMplus10-Bold.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "PixelMplus10 Regular";
+    src: url("/fonts/PixelMplus10-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "PressStart2P";
+    src: url("/fonts/PressStart2P-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 @theme {
     --color-nso-cyan: #90f4e4;
     --color-nso-purple: #4d23cf;
@@ -36,6 +57,9 @@
     --font-nso-dinkie-9px: "DinkieBitmap 9px", "monospace";
     --font-nso-dinkie-7px: "DinkieBitmap 7px", "monospace";
     --font-nso-zpix: "Zpix", "monospace";
+    --font-nso-pixelmplus-b: "PixelMplus10 Bold", "monospace";
+    --font-nso-pixelmplus-r: "PixelMplus10 Regular", "monospace";
+    --font-nso-pressstart-2p: "PressStart2P", "monospace";
 }
 
 img {

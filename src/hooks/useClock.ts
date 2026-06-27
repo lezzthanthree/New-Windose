@@ -26,6 +26,19 @@ export const useClock = () => {
         }),
     );
 
+    const [complete, setComplete] = useState<string>(
+        clock.toLocaleString([], {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+            second: "2-digit",
+
+        }),
+    );
+
     useEffect(() => {
         const interval = window.setInterval(() => {
             const clock = new Date();
@@ -50,6 +63,17 @@ export const useClock = () => {
                     year: "numeric",
                 }),
             );
+            setComplete(
+                clock.toLocaleString([], {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit",
+                    second: "2-digit",
+                }),
+            );
         }, 1000);
 
         return () => {
@@ -62,5 +86,6 @@ export const useClock = () => {
         hour12,
         hour24,
         date,
+        complete,
     };
 };
