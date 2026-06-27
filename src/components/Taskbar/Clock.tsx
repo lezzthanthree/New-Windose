@@ -7,7 +7,7 @@ const Clock: React.FC = () => {
     return (
         <div
             id="clock"
-            className="start flex flex-row gap-2 items-center border-2 p-1 border-b-white border-r-white border-t-nso-purple border-l-nso-purple"
+            className="flex flex-row gap-2 items-center border-2 p-1 border-b-white border-r-white border-t-nso-purple border-l-nso-purple"
         >
             <div className="flex flex-row gap-2">
                 <p className="font-nso-dinkie-9px text-nso-purple text-xl">

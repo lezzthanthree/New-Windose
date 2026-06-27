@@ -24,6 +24,8 @@ export const Window: React.FC<WindowProps> = ({
     const { focusedWindow, setFocusedWindow, zCount, incrementZCount } =
         useWindowState();
 
+    const active = focusedWindow == id;
+
     const [z, setZ] = useState(zCount);
 
     useEffect(() => {
@@ -38,18 +40,23 @@ export const Window: React.FC<WindowProps> = ({
     };
 
     const handleFocus = () => {
-        setFocusedWindow(id);
-        const nextZ = zCount + 1;
-        incrementZCount();
-        setZ(nextZ);
+        if (!active) {
+            setFocusedWindow(id);
+            const nextZ = zCount + 1;
+            incrementZCount();
+            setZ(nextZ);
+        }
     };
-
-    const active = focusedWindow == id;
 
     const defaultPosition =
         x !== undefined || y !== undefined
             ? { x: x ?? 0, y: y ?? 0 }
             : undefined;
+
+    if (active && z < zCount) {
+        setZ(zCount + 1);
+        incrementZCount();
+    }
 
     return (
         <Draggable
@@ -85,7 +92,7 @@ export const Window: React.FC<WindowProps> = ({
                 </div>
                 <div
                     id="content"
-                    className="bg-white border-2 border-nso-purple my-1 border-box flex flex-1"
+                    className="bg-nso-white border-2 border-nso-purple my-1 border-box flex flex-1"
                 >
                     {children}
                 </div>

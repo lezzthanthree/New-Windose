@@ -47,6 +47,7 @@
 }
 
 @theme {
+    --color-nso-white: #f9eff9;
     --color-nso-cyan: #90f4e4;
     --color-nso-purple: #4d23cf;
     --color-nso-light-pink: #f0d1f1;

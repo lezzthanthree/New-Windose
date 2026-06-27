@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import IconImage from "./IconImage";
 import { useWindowState } from "../hooks/useWindowStates";
 import SpeedDialWindow from "./Window/SpeedDial";
+import SearchWindow from "./Window/Search";
 
 const Desktop: React.FC = () => {
     const { openWindow } = useWindowState();
@@ -33,7 +34,7 @@ const Desktop: React.FC = () => {
                     <IconImage
                         image="img/icons/search.png"
                         name="Search"
-                        action={() => {}}
+                        action={() => {openWindow("search")}}
                     />
                 </div>
             </div>
@@ -48,6 +49,7 @@ const Desktop: React.FC = () => {
                 className="inset-0 flex absolute justify-center items-center pointer-events-none"
             >
                 <SpeedDialWindow />
+                <SearchWindow />
             </div>
         </div>
     );

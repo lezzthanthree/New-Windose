@@ -9,10 +9,12 @@ interface IWindowState {
 
     speedDialWindow: boolean;
     setSpeedDialWindow: (state: boolean) => void;
+    searchWindow: boolean;
+    setSearchWindow: (state: boolean) => void;
 }
 
 export const useWindowState = create<IWindowState>((set) => ({
-    focusedWindow: null,
+    focusedWindow: "speedDial",
     setFocusedWindow: (window) => set({ focusedWindow: window }),
     zCount: 0,
     incrementZCount: () => set((s) => ({ zCount: s.zCount + 1 })),
@@ -26,4 +28,6 @@ export const useWindowState = create<IWindowState>((set) => ({
     },
     speedDialWindow: true,
     setSpeedDialWindow: (state) => set({ speedDialWindow: state }),
+    searchWindow: true,
+    setSearchWindow: (state) => set({ searchWindow: state }),
 }));

@@ -1,0 +1,15 @@
+import React from "react";
+
+interface ButtonProps {
+    label: string;
+}
+
+const Button: React.FC<ButtonProps> = ({ label }) => {
+    return (
+        <button className="flex flex-row gap-2 items-center border-2 border-t-white border-l-white border-b-nso-purple border-r-nso-purple active:border-b-white active:border-r-white active:border-t-nso-purple active:border-l-nso-purple hover:border-b-nso-gray hover:border-r-nso-gray hover:border-t-nso-purple hover:border-l-nso-purple font-nso-dinkie-9px text-nso-purple p-2 text-xl">
+            {label}
+        </button>
+    );
+};
+
+export default Button;
