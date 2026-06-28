@@ -4,9 +4,11 @@ import Button from "../Button";
 import Separator from "./Separator";
 import DetailedNote from "./DetailedNote";
 import NoFiles from "./NoFiles";
+import SimpleNote from "./SimpleNote";
 
 const NoteMenu: React.FC = () => {
-    const { notes, createNote } = useNotesState();
+    const { notes, createNote, noteListView, setNoteListView } =
+        useNotesState();
 
     return (
         <div id="file-menu" className="flex flex-col gap-2 h-full">
@@ -20,8 +22,20 @@ const NoteMenu: React.FC = () => {
                     onClick={createNote}
                 />
                 <div className="flex flex-row">
-                    <Button label="Simple" icon="hn-bars" />
-                    <Button label="Detailed" icon="hn-bars-solid" />
+                    <Button
+                        label="Simple"
+                        icon="hn-bars"
+                        onClick={() => {
+                            setNoteListView("simple");
+                        }}
+                    />
+                    <Button
+                        label="Detailed"
+                        icon="hn-bars-solid"
+                        onClick={() => {
+                            setNoteListView("detailed");
+                        }}
+                    />
                 </div>
             </div>
             <Separator />
@@ -35,15 +49,24 @@ const NoteMenu: React.FC = () => {
                             (a, b) =>
                                 b.modifiedAt.valueOf() - a.modifiedAt.valueOf(),
                         )
-                        .map((note) => (
-                            <DetailedNote
-                                id={note.id}
-                                title={note.title}
-                                content={note.content}
-                                timestamp={note.modifiedAt.toLocaleString()}
-                                key={note.id}
-                            />
-                        ))
+                        .map((note) =>
+                            noteListView == "simple" ? (
+                                <SimpleNote
+                                    id={note.id}
+                                    title={note.title}
+                                    timestamp={note.modifiedAt.toLocaleString()}
+                                    key={note.id}
+                                />
+                            ) : (
+                                <DetailedNote
+                                    id={note.id}
+                                    title={note.title}
+                                    content={note.content}
+                                    timestamp={note.modifiedAt.toLocaleString()}
+                                    key={note.id}
+                                />
+                            ),
+                        )
                 ) : (
                     <NoFiles />
                 )}

@@ -20,6 +20,8 @@ interface INotesState {
     closeNote: () => void;
     editContentNote: (content: string) => void;
     editTitleNote: (title: string) => void;
+    noteListView: "simple" | "detailed";
+    setNoteListView: (view: "simple" | "detailed") => void;
 }
 
 export const useNotesState = create<INotesState>((set) => ({
@@ -114,4 +116,6 @@ export const useNotesState = create<INotesState>((set) => ({
                 notes: updatedNotes,
             };
         }),
+    noteListView: "detailed",
+    setNoteListView: (view) => set({ noteListView: view }),
 }));
