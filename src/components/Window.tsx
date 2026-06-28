@@ -91,7 +91,7 @@ export const Window: React.FC<WindowProps> = ({
                 </div>
                 <div
                     id="content"
-                    className="bg-nso-white border-2 border-nso-purple my-1 border-box flex flex-1"
+                    className="bg-nso-white border-2 border-nso-purple my-1 border-box flex flex-1 relative"
                 >
                     {children}
                 </div>

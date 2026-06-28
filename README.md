@@ -10,6 +10,7 @@ This project is in heavy development.
 - [ ] NSO Social Media 
 - [ ] Calendar and Agenda
 - [X] Notepad
+- [ ] Calculator
 - [ ] Customizable Speed Dial (title, icons, and links)
 - [ ] Allow selection of search engine (Google, DuckDuckGo, Bing, etc.)
 - [ ] Change background image 
