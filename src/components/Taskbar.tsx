@@ -4,7 +4,7 @@ import StartButton from "./Taskbar/StartButton";
 import Clock from "./Taskbar/Clock";
 import Task from "./Taskbar/Task";
 import { useWindowState } from "../hooks/useWindowStates";
-import { windowNames } from "../data/WindowName";
+import { windowNames } from "../data/Consts";
 
 const Taskbar: React.FC = () => {
     const { activeWindows } = useWindowState();

@@ -12,6 +12,7 @@
   "dependencies": {
     "@hackernoon/pixel-icon-library": "^1.1.0",
     "@tailwindcss/vite": "^4.2.4",
+    "localforage": "^1.10.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-draggable": "^4.5.0",

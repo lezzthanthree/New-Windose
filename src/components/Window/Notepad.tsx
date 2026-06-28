@@ -1,39 +1,66 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Window } from "../Window";
+import { useNotesState } from "../../hooks/useNotes";
+import NoteMenu from "../Notepad/NoteMenu";
 import Button from "../Button";
-import Note from "../Notepad/Note";
-import NoFiles from "../Notepad/NoFiles";
-import Separator from "../Notepad/Separator";
 
 const NotepadWindow: React.FC = () => {
-    const notes = 1;
+    const {
+        initializeNotes,
+        openedNote,
+        closeNote,
+        removeNote,
+        editTitleNote,
+        editContentNote,
+    } = useNotesState();
+
+    useEffect(() => {
+        initializeNotes();
+    }, []);
 
     return (
         <Window title="Notepad" id="notepad" x={150} y={50}>
             <div className="w-lg h-150 p-4 font-nso-dinkie-9px text-nso-purple">
-                <div id="file-menu" className="flex flex-col gap-2 h-full">
-                    <div id="file-action-buttons" className="flex flex-row">
-                        <Button label="Add new note" icon="hn-plus-solid" />
+                {!openedNote ? (
+                    <NoteMenu />
+                ) : (
+                    <div id="editor" className="flex flex-col gap-2 h-full">
+                        <div className="flex flex-col">
+                            <input
+                                className="flex flex-row gap-2 items-center font-nso-pixelmplus-b text-nso-purple text-4xl truncate"
+                                value={openedNote.title}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    editTitleNote(value);
+                                }}
+                            />
+                            <p>{openedNote.modifiedAt.toLocaleString()}</p>
+                        </div>
+                        <textarea
+                            className="font-nso-dinkie-9px text-nso-purple text-xl resize-none flex-1"
+                            placeholder="Your note here..."
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                editContentNote(value);
+                            }}
+                            value={openedNote.content}
+                        ></textarea>
+                        <div className="flex justify-between">
+                            <Button
+                                label="Close"
+                                icon="hn-arrow-left"
+                                onClick={closeNote}
+                            />
+                            <Button
+                                label=""
+                                icon="hn-trash-alt-solid"
+                                onClick={() => {
+                                    removeNote(openedNote.id);
+                                }}
+                            />
+                        </div>
                     </div>
-                    <Separator />
-                    <div
-                        id="file-list"
-                        className="flex-1 flex flex-col gap-1 overflow-scroll"
-                    >
-                        {notes ? (
-                            <>
-                                <Note
-                                    title="Test"
-                                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
-                                    timestamp="aslkdmsa"
-                                />
-                            </>
-                        ) : (
-                            <NoFiles />
-                        )}
-                    </div>
-                </div>
-                <div id="editor"></div>
+                )}
             </div>
         </Window>
     );
