@@ -13,7 +13,7 @@ interface INote {
 interface INotesState {
     notes: INote[];
     openedNote: INote | null;
-    initializeNotes: () => Promise<void>;
+    initializeNotepad: () => Promise<void>;
     createNote: () => void;
     removeNote: (id: number) => void;
     openNote: (id: number) => void;
@@ -27,10 +27,16 @@ interface INotesState {
 export const useNotesState = create<INotesState>((set) => ({
     notes: [],
     openedNote: null,
-    initializeNotes: async () => {
+    initializeNotepad: async () => {
         try {
             const savedNotes = await localforage.getItem<INote[]>(noteKey);
-            set({ notes: savedNotes || [] });
+            const notelistView = await localforage.getItem<
+                "simple" | "detailed"
+            >("noteListView");
+            set({
+                notes: savedNotes || [],
+                noteListView: notelistView || "detailed",
+            });
         } catch (error) {
             console.error("Failed to load notes:", error);
         }
@@ -117,5 +123,9 @@ export const useNotesState = create<INotesState>((set) => ({
             };
         }),
     noteListView: "detailed",
-    setNoteListView: (view) => set({ noteListView: view }),
+    setNoteListView: (view) =>
+        set(() => {
+            localforage.setItem("noteListView", view);
+            return { noteListView: view };
+        }),
 }));

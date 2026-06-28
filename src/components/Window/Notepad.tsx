@@ -6,10 +6,10 @@ import Editor from "../Notepad/Editor";
 import NotepadNotice from "../Notepad/NotepadNotice";
 
 const NotepadWindow: React.FC = () => {
-    const { initializeNotes, openedNote } = useNotesState();
+    const { initializeNotepad, openedNote } = useNotesState();
 
     useEffect(() => {
-        initializeNotes();
+        initializeNotepad();
     }, []);
 
     return (
