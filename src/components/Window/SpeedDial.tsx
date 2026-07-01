@@ -7,7 +7,7 @@ import { useSpeedDialState } from "../../hooks/useSpeedDial";
 
 const SpeedDialWindow: React.FC = () => {
     const { activeWindows, openWindow } = useWindowState();
-    const { speedDial } = useSpeedDialState();
+    const { speedDial, initializeSpeedDial } = useSpeedDialState();
     const { complete } = useClock();
 
     useEffect(() => {
@@ -16,7 +16,8 @@ const SpeedDialWindow: React.FC = () => {
             if (!key.match(/^[\w\s\p{P}]$/u)) return;
             if (
                 activeWindows.includes("search") ||
-                activeWindows.includes("notepad")
+                activeWindows.includes("notepad") ||
+                activeWindows.includes("settings")
             )
                 return;
             openWindow("search");
@@ -27,6 +28,10 @@ const SpeedDialWindow: React.FC = () => {
             document.removeEventListener("keydown", event);
         };
     }, [activeWindows]);
+
+    useEffect(() => {
+        initializeSpeedDial();
+    }, []);
 
     return (
         <Window title="Speed Dial" id="speedDial">
@@ -58,14 +63,18 @@ const SpeedDialWindow: React.FC = () => {
                     </div>
                 </div>
                 <div className="flex justify-center">
-                    {!activeWindows.includes("notepad") ? (
+                    {activeWindows.includes("notepad") ? (
                         <p className="font-nso-dinkie-9px">
-                            ... or you can start typing. A search bar will
-                            automatically pop up for you!
+                            (Notepad is open! Automatic search is disabled.)
+                        </p>
+                    ) : activeWindows.includes("settings") ? (
+                        <p className="font-nso-dinkie-9px">
+                            (Notepad is open! Automatic search is disabled.)
                         </p>
                     ) : (
                         <p className="font-nso-dinkie-9px">
-                            (Notepad is open! Automatic search is disabled.)
+                            ... or you can start typing. A search bar will
+                            automatically pop up for you!
                         </p>
                     )}
                 </div>

@@ -8,6 +8,7 @@ This project is in heavy development.
 # Planned Features
 - [ ] Ame-chan (of course)
 - [ ] NSO Social Media 
+- [ ] JINE
 - [ ] Calendar and Agenda
 - [X] Notepad
 - [ ] Calculator

@@ -4,6 +4,7 @@ import { useWindowState } from "../hooks/useWindowStates";
 import SpeedDialWindow from "./Window/SpeedDial";
 import SearchWindow from "./Window/Search";
 import NotepadWindow from "./Window/Notepad";
+import Settings from "./Window/Settings";
 
 const Desktop: React.FC = () => {
     const { activeWindows, openWindow } = useWindowState();
@@ -46,6 +47,13 @@ const Desktop: React.FC = () => {
                             openWindow("notepad");
                         }}
                     />
+                    <IconImage
+                        image="img/icons/ame.png"
+                        name="Settings"
+                        action={() => {
+                            openWindow("settings");
+                        }}
+                    />
                 </div>
             </div>
 
@@ -60,6 +68,7 @@ const Desktop: React.FC = () => {
                 id="center-window-area"
                 className="inset-0 flex absolute justify-center items-center pointer-events-none"
             >
+                {activeWindows.includes("settings") && <Settings />}
                 {activeWindows.includes("speedDial") && <SpeedDialWindow />}
                 {activeWindows.includes("search") && <SearchWindow />}
             </div>

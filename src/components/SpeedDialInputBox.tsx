@@ -1,18 +1,23 @@
 import React from "react";
+import { useSpeedDialState } from "../hooks/useSpeedDial";
 
 interface InputBoxProps {
     placeholder?: string;
+    id: number;
+    type: "name" | "icon" | "color" | "url";
     value: string;
-    onChange: (newString: string) => void;
     ref?: React.RefObject<HTMLInputElement>;
 }
 
 const InputBox: React.FC<InputBoxProps> = ({
     placeholder = "",
+    id,
+    type,
     value,
-    onChange,
     ref,
 }) => {
+    const { editSpeedDial } = useSpeedDialState();
+
     return (
         <input
             type="text"
@@ -21,7 +26,7 @@ const InputBox: React.FC<InputBoxProps> = ({
             placeholder={placeholder}
             onChange={(e) => {
                 const value = e.target.value;
-                onChange(value);
+                editSpeedDial(id, type, value);
             }}
             ref={ref}
         />
