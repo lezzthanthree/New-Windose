@@ -14,18 +14,18 @@ const Settings: React.FC = () => {
 
     return (
         <Window title="Settings" id="settings">
-            <div className="w-5xl flex flex-col gap-4 h-[60vh] text-nso-purple p-4 overflow-scroll">
+            <div className="w-5xl flex flex-col gap-4 h-[60vh] text-nso-purple p-4 overflow-y-scroll">
                 <div id="header">
                     <p className="font-nso-pressstart-2p text-4xl">Settings</p>
                 </div>
-                <div id="general-settings">
+                {/* <div id="general-settings">
                     <div id="header" className="w-1">
                         <p className="font-nso-pixelmplus-b text-4xl">
                             General
                         </p>
                     </div>
                     <div id="settings-content"></div>
-                </div>
+                </div> */}
                 <div id="speed-dial-settings" className="flex flex-col">
                     <div id="header">
                         <p className="font-nso-pixelmplus-b text-4xl">

@@ -41,7 +41,7 @@ const NoteMenu: React.FC = () => {
             <Separator />
             <div
                 id="note-list"
-                className="flex-1 flex flex-col gap-1 overflow-scroll"
+                className="flex-1 flex flex-col gap-1 overflow-y-auto overflow-x-hidden"
             >
                 {notes.length > 0 ? (
                     notes
