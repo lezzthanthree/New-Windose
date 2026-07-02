@@ -6,11 +6,29 @@ import Editor from "../Notepad/Editor";
 import NotepadNotice from "../Notepad/NotepadNotice";
 
 const NotepadWindow: React.FC = () => {
-    const { initializeNotepad, openedNote } = useNotesState();
+    const { initializeNotepad, openedNote, closeNote } = useNotesState();
 
     useEffect(() => {
         initializeNotepad();
     }, []);
+
+    useEffect(() => {
+        const event = (events: KeyboardEvent) => {
+            const key = events.key;
+            switch (key) {
+                case "Escape":
+                    if (!openedNote) break;
+                    closeNote();
+                    new Audio("snd/window_close.wav").play();
+                    break;
+            }
+        };
+        document.addEventListener("keydown", event);
+
+        return () => {
+            document.removeEventListener("keydown", event);
+        };
+    }, [openedNote]);
 
     return (
         <Window title="Notepad" id="notepad" x={150} y={50}>
