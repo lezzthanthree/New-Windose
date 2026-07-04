@@ -3,6 +3,8 @@ import { Window } from "../Window";
 import { useSpeedDialState } from "../../hooks/useSpeedDial";
 import InputBox from "../SpeedDialInputBox";
 import Button from "../Button";
+import SettingsGroup from "../Settings/SettingsGroup";
+import SettingsGroupSection from "../Settings/SettingsGroupSection";
 
 const Settings: React.FC = () => {
     const { speedDial, initializeSpeedDial, addSpeedDial, deleteSpeedDial } =
@@ -26,93 +28,76 @@ const Settings: React.FC = () => {
                     </div>
                     <div id="settings-content"></div>
                 </div> */}
-                <div id="speed-dial-settings" className="flex flex-col">
-                    <div id="header">
-                        <p className="font-nso-pixelmplus-b text-4xl">
-                            Speed Dial
-                        </p>
-                    </div>
-                    <div id="settings-content" className="flex flex-col">
-                        <div id="settings-content-section">
-                            <p
-                                id="settings-content-section-header"
-                                className="font-nso-dinkie-9px text-2xl"
-                            >
-                                Links
-                            </p>
-                            <p
-                                id="settings-content-section-description"
-                                className="font-nso-dinkie-9px text-xl"
-                            >
-                                Add or remove links according to your
-                                preference.
-                            </p>
-                            <div className="w-full overflow-auto flex flex-col ">
-                                <table className="w-full table-fixed font-nso-dinkie-9px text-xl">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>URL</th>
-                                            <th>Icon</th>
-                                            <th>Color</th>
-                                            <th className="w-16" />
+                <SettingsGroup header="Speed Dial">
+                    <SettingsGroupSection
+                        header="Links"
+                        description="Add or remove links according to your preference."
+                    >
+                        <>
+                            <table className="w-full table-fixed font-nso-dinkie-9px text-xl">
+                                <thead >
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>URL</th>
+                                        <th>Icon</th>
+                                        <th>Color</th>
+                                        <th className="w-16 pb-12" />
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {speedDial.map((link) => (
+                                        <tr key={link.id}>
+                                            <td className="text-center">
+                                                <InputBox
+                                                    id={link.id}
+                                                    type="name"
+                                                    value={link.name}
+                                                />
+                                            </td>
+                                            <td className="text-center">
+                                                <InputBox
+                                                    id={link.id}
+                                                    type="url"
+                                                    value={link.url}
+                                                />
+                                            </td>
+                                            <td className="text-center">
+                                                <InputBox
+                                                    id={link.id}
+                                                    type="icon"
+                                                    value={link.icon}
+                                                />
+                                            </td>
+                                            <td className="text-center">
+                                                <InputBox
+                                                    id={link.id}
+                                                    type="color"
+                                                    value={link.color}
+                                                />
+                                            </td>
+                                            <td className="w-16 flex justify-center items-center">
+                                                <Button
+                                                    label=""
+                                                    icon="hn-times"
+                                                    onClick={() => {
+                                                        deleteSpeedDial(
+                                                            link.id,
+                                                        );
+                                                    }}
+                                                />
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        {speedDial.map((link) => (
-                                            <tr key={link.id}>
-                                                <td className="text-center">
-                                                    <InputBox
-                                                        id={link.id}
-                                                        type="name"
-                                                        value={link.name}
-                                                    />
-                                                </td>
-                                                <td className="text-center">
-                                                    <InputBox
-                                                        id={link.id}
-                                                        type="url"
-                                                        value={link.url}
-                                                    />
-                                                </td>
-                                                <td className="text-center">
-                                                    <InputBox
-                                                        id={link.id}
-                                                        type="icon"
-                                                        value={link.icon}
-                                                    />
-                                                </td>
-                                                <td className="text-center">
-                                                    <InputBox
-                                                        id={link.id}
-                                                        type="color"
-                                                        value={link.color}
-                                                    />
-                                                </td>
-                                                <td className="w-16 flex justify-center items-center">
-                                                    <Button
-                                                        label=""
-                                                        icon="hn-times"
-                                                        onClick={() => {
-                                                            deleteSpeedDial(
-                                                                link.id,
-                                                            );
-                                                        }}
-                                                    />
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                                <Button
-                                    label="Add"
-                                    icon="hn-plus-solid"
-                                    onClick={addSpeedDial}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                    ))}
+                                </tbody>
+                            </table>
+                            <Button
+                                label="Add"
+                                icon="hn-plus-solid"
+                                onClick={addSpeedDial}
+                            />
+                        </>
+                    </SettingsGroupSection>
+                </SettingsGroup>
             </div>
         </Window>
     );
