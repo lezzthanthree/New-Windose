@@ -45,22 +45,33 @@ const SpeedDialWindow: React.FC = () => {
                     </p>
                 </div>
                 <div id="apps" className="flex flex-col gap-1">
-                    <p className="font-nso-dinkie-9px text-xl">
-                        What do you want to do today?
-                    </p>
-                    <div className="flex flex-row justify-evenly flex-wrap gap-x-16">
-                        {speedDial.map((item) => (
-                            <Icon8Bit
-                                execute
-                                icon={item.icon}
-                                color={item.color}
-                                name={item.name}
-                                action={() => {
-                                    window.open(item.url, "_self");
-                                }}
-                            />
-                        ))}
-                    </div>
+                    {speedDial.length > 0 ? (
+                        <>
+                            <p className="font-nso-dinkie-9px text-xl">
+                                What do you want to do today?
+                            </p>
+                            <div className="flex flex-row justify-evenly flex-wrap gap-x-16">
+                                {speedDial.map((item) => (
+                                    <Icon8Bit
+                                        execute
+                                        icon={item.icon}
+                                        color={item.color}
+                                        name={item.name}
+                                        action={() => {
+                                            window.open(item.url, "_self");
+                                        }}
+                                    />
+                                ))}
+                            </div>
+                        </>
+                    ) : (
+                        <div className="p-4 flex justify-center items-center ">
+                            <p className="font-nso-dinkie-9px">
+                                There's nothing in your Speed Dial! You can add
+                                by going to Settings.
+                            </p>
+                        </div>
+                    )}
                 </div>
                 <div className="flex justify-center">
                     {activeWindows.includes("notepad") ? (
@@ -73,8 +84,8 @@ const SpeedDialWindow: React.FC = () => {
                         </p>
                     ) : (
                         <p className="font-nso-dinkie-9px">
-                            ... or you can start typing. A search bar will
-                            automatically pop up for you!
+                            A search bar will automatically pop up for you if
+                            you start typing!
                         </p>
                     )}
                 </div>
