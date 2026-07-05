@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { Window } from "../Window";
 import { useWindowState } from "../../hooks/useWindowStates";
-import { useClock } from "../../hooks/useClock";
 import Icon8Bit from "../Icon8Bit";
 import { useSpeedDialState } from "../../hooks/useSpeedDial";
+import { useClock } from "../../hooks/useClock";
 
 const SpeedDialWindow: React.FC = () => {
     const { activeWindows, openWindow } = useWindowState();
-    const { speedDial, initializeSpeedDial } = useSpeedDialState();
-    const { hour12complete, weekday, dateComplete } = useClock();
+    const { speedDial, settings, initializeSpeedDial } = useSpeedDialState();
+    const { weekday, dateComplete, hour24complete } = useClock();
 
     useEffect(() => {
         const event = (events: KeyboardEvent) => {
@@ -33,15 +33,20 @@ const SpeedDialWindow: React.FC = () => {
         initializeSpeedDial();
     }, []);
 
+    if (!settings) return;
+
     return (
         <Window title="Speed Dial" id="speedDial">
             <div className="flex w-200 p-4 text-nso-purple flex-col gap-4">
                 <div id="intro">
                     <p className="font-nso-pressstart-2p text-4xl">
-                        Welcome back!
+                        {settings?.header}
                     </p>
                     <p className="font-nso-dinkie-9px text-2xl">
-                        Today is {weekday}, {dateComplete}, {hour12complete}.
+                        {settings?.description
+                            .replace("{day}", weekday)
+                            .replace("{date}", dateComplete)
+                            .replace("{time}", hour24complete)}
                     </p>
                 </div>
                 <div id="apps" className="flex flex-col gap-1">
@@ -50,7 +55,13 @@ const SpeedDialWindow: React.FC = () => {
                             <p className="font-nso-dinkie-9px text-xl">
                                 What do you want to do today?
                             </p>
-                            <div className="flex flex-row justify-evenly flex-wrap gap-x-16">
+                            <div
+                                className="flex flex-row justify-evenly flex-wrap"
+                                style={{
+                                    columnGap: `${settings?.gap.horizontal}px`,
+                                    rowGap: `${settings?.gap.vertical}px`,
+                                }}
+                            >
                                 {speedDial.map((item) => (
                                     <Icon8Bit
                                         execute

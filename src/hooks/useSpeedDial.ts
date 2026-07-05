@@ -1,6 +1,6 @@
 import localforage from "localforage";
 import { create } from "zustand";
-import { speedDialKey } from "../data/Consts";
+import { speedDialKey, speedDialSettingsKey } from "../data/Consts";
 
 interface ISpeedDial {
     id: number;
@@ -10,8 +10,14 @@ interface ISpeedDial {
     url: string;
 }
 
+interface IGap {
+    horizontal: number;
+    vertical: number;
+}
+
 interface ISpeedDialState {
     speedDial: ISpeedDial[];
+    settings: ISpeedDialSettings | null;
     initializeSpeedDial: () => Promise<void>;
     addSpeedDial: () => Promise<void>;
     editSpeedDial: (
@@ -20,6 +26,20 @@ interface ISpeedDialState {
         value: string,
     ) => Promise<void>;
     deleteSpeedDial: (id: number) => Promise<void>;
+    editGreetingSettings: (
+        message: string,
+        type: "header" | "description",
+    ) => Promise<void>;
+    editGapSettings: (
+        gap: number,
+        type: "horizontal" | "vertical",
+    ) => Promise<void>;
+}
+
+interface ISpeedDialSettings {
+    gap: IGap;
+    header: string;
+    description: string;
 }
 
 const defaultSpeedDial: ISpeedDial[] = [
@@ -60,18 +80,42 @@ const defaultSpeedDial: ISpeedDial[] = [
     },
 ];
 
+const defaultSpeedDialSettings: ISpeedDialSettings = {
+    gap: {
+        horizontal: 64,
+        vertical: 8,
+    },
+    header: "Welcome back!",
+    description: "Today's {day}, {date}, {time}.",
+};
+
 export const useSpeedDialState = create<ISpeedDialState>((set, get) => ({
     speedDial: [],
+    settings: null,
     initializeSpeedDial: async () => {
         try {
             const savedSpeedDials =
                 await localforage.getItem<ISpeedDial[]>(speedDialKey);
+            const savedSpeedDialSettings =
+                await localforage.getItem<ISpeedDialSettings>(
+                    speedDialSettingsKey,
+                );
 
             if (savedSpeedDials == null) {
                 await localforage.setItem(speedDialKey, defaultSpeedDial);
                 set({ speedDial: defaultSpeedDial });
             } else {
                 set({ speedDial: savedSpeedDials });
+            }
+
+            if (savedSpeedDialSettings == null) {
+                await localforage.setItem<ISpeedDialSettings>(
+                    speedDialSettingsKey,
+                    defaultSpeedDialSettings,
+                );
+                set({ settings: defaultSpeedDialSettings });
+            } else {
+                set({ settings: savedSpeedDialSettings });
             }
         } catch (error) {
             console.error("Failed to load speedDial:", error);
@@ -124,6 +168,43 @@ export const useSpeedDialState = create<ISpeedDialState>((set, get) => ({
             set({ speedDial: updated });
         } catch (error) {
             console.error("Failed to delete speedDial:", error);
+        }
+    },
+    editGreetingSettings: async (
+        message: string,
+        type: "header" | "description",
+    ) => {
+        const currentSettings = get().settings ?? defaultSpeedDialSettings;
+        const updated = {
+            ...currentSettings,
+            [type]: message,
+        };
+        set({ settings: updated });
+
+        try {
+            await localforage.setItem(speedDialSettingsKey, updated);
+        } catch (error) {
+            console.error("Failed to edit greeting settings:", error);
+        }
+    },
+    editGapSettings: async (
+        gap: number,
+        type: "horizontal" | "vertical",
+    ) => {
+        const currentSettings = get().settings ?? defaultSpeedDialSettings;
+        const updated: ISpeedDialSettings = {
+            ...currentSettings,
+            gap: {
+                ...currentSettings.gap,
+                [type]: gap,
+            },
+        };
+        set({ settings: updated });
+
+        try {
+            await localforage.setItem(speedDialSettingsKey, updated);
+        } catch (error) {
+            console.error("Failed to edit gap settings:", error);
         }
     },
 }));

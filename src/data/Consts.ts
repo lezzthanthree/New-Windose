@@ -2,8 +2,9 @@ export const windowNames = {
     speedDial: "Speed Dial",
     search: "Search",
     notepad: "Notepad",
-    settings: "Settings"
+    settings: "Settings",
 };
 
 export const noteKey = "notes";
-export const speedDialKey = "speedDial_test2";
+export const speedDialKey = "speedDial";
+export const speedDialSettingsKey = "speedDialSettings_test";

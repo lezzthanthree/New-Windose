@@ -86,7 +86,9 @@ const SearchWindow: React.FC = () => {
                 <div className="flex flex-row gap-2 px-16 items-center">
                     <InputBox
                         placeholder="Search Kangle..."
-                        onChange={setSearch}
+                        onChange={(newValue) => {
+                            setSearch(newValue as string);
+                        }}
                         value={search}
                         ref={inputBox}
                     />

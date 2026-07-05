@@ -12,7 +12,7 @@ This project is in heavy development.
 - [ ] Calendar and Agenda
 - [X] Notepad
 - [ ] Calculator
-- [ ] Customizable Speed Dial (title, icons, and links)
+- [X] Customizable Speed Dial (title, icons, and links)
 - [ ] Allow selection of search engine (Google, DuckDuckGo, Bing, etc.)
 - [ ] Change background image 
 - [ ] 12/24 hour clock option

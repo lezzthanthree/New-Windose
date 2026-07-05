@@ -2,8 +2,8 @@ import React from "react";
 
 interface InputBoxProps {
     placeholder?: string;
-    value: string;
-    onChange: (newString: string) => void;
+    value: string | number;
+    onChange: (newValue: string | number) => void;
     ref?: React.RefObject<HTMLInputElement | null>;
     label?: string;
     footer?: string;

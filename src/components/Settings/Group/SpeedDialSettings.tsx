@@ -7,12 +7,21 @@ import InputBox from "../../InputBox";
 import { useSpeedDialState } from "../../../hooks/useSpeedDial";
 
 const SpeedDialSettings: React.FC = () => {
-    const { speedDial, initializeSpeedDial, addSpeedDial, deleteSpeedDial } =
-        useSpeedDialState();
+    const {
+        speedDial,
+        initializeSpeedDial,
+        addSpeedDial,
+        deleteSpeedDial,
+        editGreetingSettings,
+        editGapSettings,
+        settings,
+    } = useSpeedDialState();
 
     useEffect(() => {
         initializeSpeedDial();
     }, []);
+
+    if (!settings) return;
 
     return (
         <SettingsGroup header="Speed Dial">
@@ -22,15 +31,21 @@ const SpeedDialSettings: React.FC = () => {
             >
                 <div className="flex flex-col gap-2">
                     <InputBox
-                        value="Welcome back!"
+                        value={settings?.header}
                         label="Header"
-                        onChange={() => {}}
+                        onChange={(newValue: string | number) => {
+                            const value = String(newValue);
+                            void editGreetingSettings(value, "header");
+                        }}
                     />
                     <InputBox
-                        value="Today is {date}, {time}."
+                        value={settings?.description}
                         label="Description"
                         footer="Custom parameters: {day} {date} {time}"
-                        onChange={() => {}}
+                        onChange={(newValue: string | number) => {
+                            const value = String(newValue);
+                            void editGreetingSettings(value, "description");
+                        }}
                     />
                 </div>
             </SettingsGroupSection>
@@ -119,16 +134,22 @@ const SpeedDialSettings: React.FC = () => {
             >
                 <div className="flex flex-col gap-2">
                     <InputBox
-                        value="16"
+                        value={settings?.gap.horizontal}
                         label="Horizontal Gap"
-                        onChange={() => {}}
+                        onChange={(newValue: string | number) => {
+                            const numeric = Number(newValue);
+                            void editGapSettings(numeric, "horizontal");
+                        }}
                         type="number"
                         footer="The gap between individual links."
                     />
                     <InputBox
-                        value="0"
+                        value={settings?.gap.vertical}
                         label="Vertical Gap"
-                        onChange={() => {}}
+                        onChange={(newValue: string | number) => {
+                            const numeric = Number(newValue);
+                            void editGapSettings(numeric, "vertical");
+                        }}
                         type="number"
                         footer="The gap between lines when links wrap onto a new line."
                     />
