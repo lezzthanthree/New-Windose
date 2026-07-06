@@ -71,6 +71,7 @@ const SpeedDialWindow: React.FC = () => {
                                         action={() => {
                                             window.open(item.url, "_self");
                                         }}
+                                        from="speed-dial"
                                     />
                                 ))}
                             </div>

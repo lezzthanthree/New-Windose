@@ -1,4 +1,5 @@
 import React from "react";
+import { useExperimentalState } from "../hooks/useExperimental";
 
 interface Icon8BitProps {
     icon: string;
@@ -6,6 +7,7 @@ interface Icon8BitProps {
     name: string;
     action: () => void;
     execute?: boolean;
+    from?: string;
 }
 
 const Icon8Bit: React.FC<Icon8BitProps> = ({
@@ -14,11 +16,20 @@ const Icon8Bit: React.FC<Icon8BitProps> = ({
     name,
     action,
     execute = false,
+    from,
 }) => {
+    const { experimental } = useExperimentalState();
+
     const handleAction = () => {
         if (execute) {
             new Audio("snd/execute.wav").play().catch((e) => console.log(e));
         }
+
+        if (experimental && from == "speed-dial") {
+            console.info("Will not redirect. Development mode on.");
+            return;
+        }
+
         action();
     };
 

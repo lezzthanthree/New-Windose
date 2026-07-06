@@ -3,6 +3,7 @@ export const windowNames = {
     search: "Search",
     notepad: "Notepad",
     settings: "Settings",
+    developer: "Developer Mode",
 };
 
 export const noteKey = "notes";

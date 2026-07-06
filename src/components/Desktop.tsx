@@ -5,6 +5,7 @@ import SpeedDialWindow from "./Window/SpeedDial";
 import SearchWindow from "./Window/Search";
 import NotepadWindow from "./Window/Notepad";
 import Settings from "./Window/Settings";
+import Developer from "./Window/Developer";
 
 const Desktop: React.FC = () => {
     const { activeWindows, openWindow } = useWindowState();
@@ -62,6 +63,7 @@ const Desktop: React.FC = () => {
                 className="inset-0 flex absolute pointer-events-none"
             >
                 {activeWindows.includes("notepad") && <NotepadWindow />}
+                {activeWindows.includes("developer") && <Developer />}
             </div>
 
             <div
