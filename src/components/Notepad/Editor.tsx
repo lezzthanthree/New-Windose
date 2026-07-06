@@ -19,7 +19,7 @@ const Editor: React.FC = () => {
         <div id="editor" className="flex flex-col gap-2 h-full">
             <div className="flex flex-col">
                 <input
-                    className="flex flex-row gap-2 items-center font-nso-pixelmplus-b   text-4xl truncate"
+                    className="flex flex-row gap-2 items-center font-nso-pixelmplus-b text-4xl truncate focus:px-2 transition-all"
                     value={openedNote.title}
                     onChange={(e) => {
                         const value = e.target.value;
@@ -29,7 +29,7 @@ const Editor: React.FC = () => {
                 <p>{openedNote.modifiedAt.toLocaleString()}</p>
             </div>
             <textarea
-                className="    text-xl resize-none flex-1"
+                className="text-xl resize-none flex-1 focus:p-2 transition-all"
                 placeholder="Your note here..."
                 onChange={(e) => {
                     const value = e.target.value;
