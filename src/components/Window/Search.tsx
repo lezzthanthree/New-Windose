@@ -8,7 +8,8 @@ import SearchHistoryList from "../Search/SearchHistoryList";
 
 const SearchWindow: React.FC = () => {
     const { closeWindow } = useWindowState();
-    const { search, setSearch, clear } = useSearchState();
+    const { search, setSearch, clear, initializeSearchHistoryList, addQuery } =
+        useSearchState();
     const inputBox = useRef<HTMLInputElement>(null);
     const isURL =
         /^www\./i.test(search) ||
@@ -18,6 +19,7 @@ const SearchWindow: React.FC = () => {
 
     const handleExecution = () => {
         new Audio("snd/execute.wav").play();
+        addQuery(search);
         if (isURL) {
             let url = search;
             if (!url.startsWith("http")) {
@@ -74,6 +76,8 @@ const SearchWindow: React.FC = () => {
         if (inputBox.current) {
             inputBox.current.focus();
         }
+
+        initializeSearchHistoryList();
     }, []);
 
     return (
