@@ -6,6 +6,7 @@ import SearchWindow from "./Window/Search";
 import NotepadWindow from "./Window/Notepad";
 import Settings from "./Window/Settings";
 import Developer from "./Window/Developer";
+import Credits from "./Window/Credits";
 
 const Desktop: React.FC = () => {
     const { activeWindows, openWindow } = useWindowState();
@@ -66,6 +67,7 @@ const Desktop: React.FC = () => {
                 {activeWindows.includes("settings") && <Settings />}
                 {activeWindows.includes("speedDial") && <SpeedDialWindow />}
                 {activeWindows.includes("search") && <SearchWindow />}
+                {activeWindows.includes("credits") && <Credits />}
             </div>
         </div>
     );

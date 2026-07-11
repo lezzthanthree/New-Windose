@@ -38,7 +38,12 @@ const StartMenu: React.FC = () => {
                 />
                 <StartMenuOption name="Soon..." disabled />
                 <StartMenuOption name="Soon..." disabled />
-                <StartMenuOption name="Credits" />
+                <StartMenuOption
+                    name="Credits"
+                    action={() => {
+                        openWindow("credits");
+                    }}
+                />
                 <StartMenuOption
                     name="System Settings"
                     action={() => {

@@ -4,6 +4,7 @@ export const windowNames = {
     notepad: "Notepad",
     settings: "Settings",
     developer: "Developer Mode",
+    credits: "Credits",
 };
 
 export const noteKey = "notes";
