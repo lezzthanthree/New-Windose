@@ -13,13 +13,14 @@ const SearchHistory: React.FC<SearchHistoryProps> = ({
     date,
     selected,
 }) => {
-    const { setSearch } = useSearchState();
+    const { setSearch, setTemporary } = useSearchState();
 
     return (
         <div
             className={`flex flex-row ${selected ? "bg-nso-dark-pink" : "bg-nso-gray"} border-nso-purple border-2 h-8 items-center px-2 flex-1 gap-4`}
             onClick={() => {
                 setSearch(query);
+                setTemporary("");
             }}
         >
             <p className="flex-1 overflow-x-hidden wrap">{query}</p>

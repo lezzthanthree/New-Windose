@@ -6,15 +6,18 @@ import type ISearchHistory from "../types/ISearchHistory";
 interface ISearchState {
     search: string;
     searchHistoryList: ISearchHistory[];
+    temporary: string;
     initializeSearchHistoryList: () => void;
     setSearch: (newString: string) => void;
     addQuery: (query: string) => Promise<void>;
+    setTemporary: (state: string) => void;
     clear: () => void;
 }
 
 export const useSearchState = create<ISearchState>((set, get) => ({
     search: "",
     searchHistoryList: [],
+    temporary: "",
     initializeSearchHistoryList: async () => {
         try {
             const searchList =
@@ -30,7 +33,7 @@ export const useSearchState = create<ISearchState>((set, get) => ({
     addQuery: async (query) => {
         const list = get().searchHistoryList;
         const newSearchList = [
-            ...list.filter((s) => s.query.toLowerCase() != query),
+            ...list.filter((s) => s.query.toLowerCase() != query.toLowerCase()),
             {
                 query,
                 date: new Date(),
@@ -48,5 +51,10 @@ export const useSearchState = create<ISearchState>((set, get) => ({
         });
     },
     setSearch: (newString: string) => set({ search: newString }),
+    setTemporary: (state) => {
+        set({
+            temporary: state,
+        });
+    },
     clear: () => set({ search: "" }),
 }));

@@ -8,31 +8,40 @@ import SearchHistoryList from "../Search/SearchHistoryList";
 
 const SearchWindow: React.FC = () => {
     const { closeWindow } = useWindowState();
-    const { search, setSearch, clear, initializeSearchHistoryList, addQuery } =
-        useSearchState();
+    const {
+        search,
+        setSearch,
+        clear,
+        initializeSearchHistoryList,
+        addQuery,
+        temporary,
+        setTemporary,
+    } = useSearchState();
     const inputBox = useRef<HTMLInputElement>(null);
     const isURL =
         /^www\./i.test(search) ||
         /^http:\/\//i.test(search) ||
         /^https:\/\//i.test(search) ||
-        /\.[a-zA-Z]{2,5}\b/.test(search);
+        /\b[a-zA-Z0-9-]+\.[a-zA-Z]{2,5}(?!\s)\b/.test(search);
 
     const handleExecution = () => {
         new Audio("snd/execute.wav").play();
-        addQuery(search);
+        const toSearch = temporary.length == 0 ? search : temporary;
+
+        addQuery(toSearch);
         if (isURL) {
-            let url = search;
+            let url = toSearch;
             if (!url.startsWith("http")) {
                 url = "https://" + url;
             }
             window.open(url, "_self");
             return;
         }
-        if (search.length == 0) {
+        if (toSearch.length == 0) {
             window.open("https://www.google.com/search?q=Ame-chan", "_self");
             return;
         }
-        window.open("https://www.google.com/search?q=" + search, "_self");
+        window.open("https://www.google.com/search?q=" + toSearch, "_self");
     };
 
     useEffect(() => {
@@ -42,6 +51,7 @@ const SearchWindow: React.FC = () => {
                 case "Escape":
                     if (search) {
                         setSearch("");
+                        setTemporary("");
                         break;
                     }
                     new Audio("snd/window_close.wav").play();
@@ -49,11 +59,19 @@ const SearchWindow: React.FC = () => {
                     closeWindow("search");
                     break;
                 case "Enter":
+                    if (temporary) {
+                        setSearch(temporary);
+                        setTemporary("");
+                    }
                     handleExecution();
                     break;
                 case "Backspace":
                     if (inputBox.current) {
                         inputBox.current.focus();
+                    }
+                    if (temporary) {
+                        setSearch(temporary);
+                        setTemporary("");
                     }
                     break;
                 case "ArrowUp":
@@ -67,6 +85,10 @@ const SearchWindow: React.FC = () => {
                     if (inputBox.current) {
                         inputBox.current.focus();
                     }
+                    if (temporary) {
+                        setSearch(temporary);
+                        setTemporary("");
+                    }
                     break;
             }
         };
@@ -76,7 +98,7 @@ const SearchWindow: React.FC = () => {
         return () => {
             document.removeEventListener("keydown", event);
         };
-    }, [search]);
+    }, [search, temporary]);
 
     useEffect(() => {
         if (inputBox.current) {
@@ -101,7 +123,7 @@ const SearchWindow: React.FC = () => {
                             onChange={(newValue) => {
                                 setSearch(newValue as string);
                             }}
-                            value={search}
+                            value={temporary ? temporary : search}
                             ref={inputBox}
                         />
                         <Button
@@ -114,7 +136,6 @@ const SearchWindow: React.FC = () => {
                 <div className="flex flex-col justify-center items-center">
                     {isURL && <p>Detected a URL!</p>}
                     <p>Press [ENTER] to {isURL ? "continue" : "search"}</p>
-                    <p>Press [TAB] to auto-complete</p>
                     <p>
                         Press [ESC] to{" "}
                         {search.length == 0

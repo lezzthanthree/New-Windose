@@ -4,14 +4,19 @@ import SearchHistory from "./SearchHistory";
 import { fuzzy } from "fast-fuzzy";
 
 const SearchHistoryList: React.FC = () => {
-    const { searchHistoryList, search: query, setSearch } = useSearchState();
+    const {
+        searchHistoryList,
+        search: query,
+        setSearch,
+        setTemporary,
+    } = useSearchState();
     const deferredQuery = useDeferredValue(query);
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [prevQuery, setPrevQuery] = useState(deferredQuery);
 
     if (deferredQuery !== prevQuery) {
         setPrevQuery(deferredQuery);
-        setSelectedIndex(0);
+        setSelectedIndex(-1);
     }
 
     const filteredSearch = useMemo(() => {
@@ -33,20 +38,33 @@ const SearchHistoryList: React.FC = () => {
             const key = events.key;
 
             switch (key) {
-                case "ArrowDown":
+                case "ArrowDown": {
                     events.preventDefault();
-                    setSelectedIndex((prev) => (prev + 1) % length);
+                    const nextIndex = (selectedIndex + 1) % length;
+
+                    setSelectedIndex(nextIndex);
+
+                    const targetItem = filteredSearch[nextIndex];
+                    if (targetItem) setTemporary(targetItem.query);
                     break;
-                case "ArrowUp":
+                }
+                case "ArrowUp": {
                     events.preventDefault();
-                    setSelectedIndex((prev) => (prev - 1 + length) % length);
+                    const nextIndex = (selectedIndex - 1 + length) % length;
+
+                    setSelectedIndex(nextIndex);
+
+                    const targetItem = filteredSearch[nextIndex];
+                    if (targetItem) setTemporary(targetItem.query);
                     break;
+                }
                 case "Tab": {
-                    events.preventDefault();
                     const currentlySelected = filteredSearch[selectedIndex];
                     if (currentlySelected) {
                         events.preventDefault();
                         setSearch(currentlySelected.query);
+                        setTemporary("");
+                        setSelectedIndex(-1);
                     }
                     break;
                 }
@@ -58,7 +76,7 @@ const SearchHistoryList: React.FC = () => {
         return () => {
             document.removeEventListener("keydown", event);
         };
-    }, [filteredSearch.length, selectedIndex]);
+    }, [filteredSearch, selectedIndex, setTemporary, setSearch]);
 
     return (
         <div className="absolute flex flex-col inset-x-16 py-2">
