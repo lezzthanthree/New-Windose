@@ -18,15 +18,16 @@ const SearchWindow: React.FC = () => {
         setTemporary,
     } = useSearchState();
     const inputBox = useRef<HTMLInputElement>(null);
+    const toSearch = temporary.length == 0 ? search : temporary;
+
     const isURL =
-        /^www\./i.test(search) ||
-        /^http:\/\//i.test(search) ||
-        /^https:\/\//i.test(search) ||
-        /\b[a-zA-Z0-9-]+\.[a-zA-Z]{2,5}(?!\s)\b/.test(search);
+        /^www\./i.test(toSearch) ||
+        /^http:\/\//i.test(toSearch) ||
+        /^https:\/\//i.test(toSearch) ||
+        /\b[a-zA-Z0-9-]+\.[a-zA-Z]{2,5}(?!\s)\b/.test(toSearch);
 
     const handleExecution = () => {
         new Audio("snd/execute.wav").play();
-        const toSearch = temporary.length == 0 ? search : temporary;
 
         addQuery(toSearch);
         if (isURL) {
