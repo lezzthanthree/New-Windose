@@ -8,7 +8,7 @@ import { useGeneralSettingsState } from "../../hooks/useGeneralSettings";
 
 const SpeedDialWindow: React.FC = () => {
     const { activeWindows, openWindow } = useWindowState();
-    const { speedDial, settings, initializeSpeedDial } = useSpeedDialState();
+    const { speedDial, settings } = useSpeedDialState();
     const { weekday, dateLong, timeLong } = useClock();
     const { hideSearchTip } = useGeneralSettingsState();
 
@@ -30,10 +30,6 @@ const SpeedDialWindow: React.FC = () => {
             document.removeEventListener("keydown", event);
         };
     }, [activeWindows]);
-
-    useEffect(() => {
-        initializeSpeedDial();
-    }, []);
 
     if (!settings) return;
 

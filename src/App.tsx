@@ -7,14 +7,18 @@ import MobileViewNotification from "./components/UI/MobileViewNotification";
 import StartMenu from "./components/Taskbar/StartMenu";
 import Effects from "./components/UI/Effects";
 import { useGeneralSettingsState } from "./hooks/useGeneralSettings";
+import { useSpeedDialState } from "./hooks/useSpeedDial";
 
 function App() {
     const { initializeExperimental } = useExperimentalState();
     const { initializeSettings } = useGeneralSettingsState();
+    const { initializeSpeedDial } = useSpeedDialState();
 
     useEffect(() => {
         initializeExperimental();
         initializeSettings();
+        initializeSpeedDial();
+
         const clickSounds = () => {
             new Audio("snd/click.wav").play();
         };
