@@ -6,12 +6,15 @@ import DeveloperModeBar from "./components/UI/DeveloperModeBar";
 import MobileViewNotification from "./components/UI/MobileViewNotification";
 import StartMenu from "./components/Taskbar/StartMenu";
 import Effects from "./components/UI/Effects";
+import { useGeneralSettingsState } from "./hooks/useGeneralSettings";
 
 function App() {
     const { initializeExperimental } = useExperimentalState();
+    const { initializeSettings } = useGeneralSettingsState();
 
     useEffect(() => {
         initializeExperimental();
+        initializeSettings();
     }, []);
 
     return (

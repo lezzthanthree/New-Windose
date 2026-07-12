@@ -4,11 +4,13 @@ import { useWindowState } from "../../hooks/useWindowStates";
 import Icon8Bit from "../UI/Icon8Bit";
 import { useSpeedDialState } from "../../hooks/useSpeedDial";
 import { useClock } from "../../hooks/useClock";
+import { useGeneralSettingsState } from "../../hooks/useGeneralSettings";
 
 const SpeedDialWindow: React.FC = () => {
     const { activeWindows, openWindow } = useWindowState();
     const { speedDial, settings, initializeSpeedDial } = useSpeedDialState();
     const { weekday, dateLong, timeLong } = useClock();
+    const { hideSearchTip } = useGeneralSettingsState();
 
     useEffect(() => {
         const event = (events: KeyboardEvent) => {
@@ -94,22 +96,27 @@ const SpeedDialWindow: React.FC = () => {
                         </div>
                     )}
                 </div>
-                <div className="flex justify-center">
-                    {activeWindows.includes("notepad") ? (
-                        <p className=" ">
-                            (Notepad is open! Automatic search is disabled.)
-                        </p>
-                    ) : activeWindows.includes("settings") ? (
-                        <p className=" ">
-                            (Settings is open! Automatic search is disabled.)
-                        </p>
-                    ) : (
-                        <p className=" ">
-                            A search bar will automatically pop up for you if
-                            you start typing!
-                        </p>
-                    )}
-                </div>
+                {hideSearchTip ? (
+                    <div className="h-1" />
+                ) : (
+                    <div className="flex justify-center">
+                        {activeWindows.includes("notepad") ? (
+                            <p className=" ">
+                                (Notepad is open! Automatic search is disabled.)
+                            </p>
+                        ) : activeWindows.includes("settings") ? (
+                            <p className=" ">
+                                (Settings is open! Automatic search is
+                                disabled.)
+                            </p>
+                        ) : (
+                            <p className=" ">
+                                A search bar will automatically pop up for you
+                                if you start typing!
+                            </p>
+                        )}
+                    </div>
+                )}
             </div>
         </Window>
     );

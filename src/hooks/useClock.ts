@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { useGeneralSettingsState } from "./useGeneralSettings";
 
 export const useClock = () => {
     const [clock, setClock] = useState<Date>(new Date());
-    const [hour24] = useState<boolean>(true);
+    const { hour24 } = useGeneralSettingsState();
 
     useEffect(() => {
         const interval = window.setInterval(() => {
