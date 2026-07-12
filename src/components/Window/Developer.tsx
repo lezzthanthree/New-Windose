@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Window } from "../Window";
-import Button from "../Button";
+import { Window } from "../UI/Window";
+import Button from "../UI/Button";
 class InternetOverdose extends Error {
     constructor() {
         super();

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { Window } from "../Window";
+import { Window } from "../UI/Window";
 import { useWindowState } from "../../hooks/useWindowStates";
-import InputBox from "../InputBox";
-import Button from "../Button";
+import InputBox from "../UI/InputBox";
+import Button from "../UI/Button";
 import { useSearchState } from "../../hooks/useSearch";
 import SearchHistoryList from "../Search/SearchHistoryList";
 

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import Desktop from "./components/Desktop";
-import Taskbar from "./components/Taskbar";
+import Desktop from "./components/UI/Desktop";
+import Taskbar from "./components/UI/Taskbar";
 import { useExperimentalState } from "./hooks/useExperimental";
-import DeveloperModeBar from "./components/DeveloperModeBar";
-import MobileViewNotification from "./components/MobileViewNotification";
+import DeveloperModeBar from "./components/UI/DeveloperModeBar";
+import MobileViewNotification from "./components/UI/MobileViewNotification";
 import StartMenu from "./components/Taskbar/StartMenu";
-import Effects from "./components/Effects";
+import Effects from "./components/UI/Effects";
 
 function App() {
     const { initializeExperimental } = useExperimentalState();

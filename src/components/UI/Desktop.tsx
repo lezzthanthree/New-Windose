@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import IconImage from "./IconImage";
-import { useWindowState } from "../hooks/useWindowStates";
-import SpeedDialWindow from "./Window/SpeedDial";
-import SearchWindow from "./Window/Search";
-import NotepadWindow from "./Window/Notepad";
-import SettingsWindow from "./Window/Settings";
-import DeveloperWindow from "./Window/Developer";
-import CreditsWindow from "./Window/Credits";
+import { useWindowState } from "../../hooks/useWindowStates";
+import SpeedDialWindow from "../Window/SpeedDial";
+import SearchWindow from "../Window/Search";
+import NotepadWindow from "../Window/Notepad";
+import SettingsWindow from "../Window/Settings";
+import DeveloperWindow from "../Window/Developer";
+import CreditsWindow from "../Window/Credits";
 
 const Desktop: React.FC = () => {
     const { activeWindows, openWindow } = useWindowState();

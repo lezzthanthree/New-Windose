@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Window } from "../Window";
+import { Window } from "../UI/Window";
 import { useWindowState } from "../../hooks/useWindowStates";
-import Icon8Bit from "../Icon8Bit";
+import Icon8Bit from "../UI/Icon8Bit";
 import { useSpeedDialState } from "../../hooks/useSpeedDial";
 import { useClock } from "../../hooks/useClock";
 

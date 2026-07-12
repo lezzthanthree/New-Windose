@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import SpeedDialInputBox from "../../SpeedDialInputBox";
-import Button from "../../Button";
+import SpeedDialInputBox from "../../UI/SpeedDialInputBox";
+import Button from "../../UI/Button";
 import SettingsGroup from "../../Settings/SettingsGroup";
 import SettingsGroupSection from "../../Settings/SettingsGroupSection";
-import InputBox from "../../InputBox";
+import InputBox from "../../UI/InputBox";
 import { useSpeedDialState } from "../../../hooks/useSpeedDial";
 
 const SpeedDialSettings: React.FC = () => {

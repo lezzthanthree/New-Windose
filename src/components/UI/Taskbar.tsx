@@ -1,11 +1,11 @@
 import React from "react";
-import Separator from "./Taskbar/Separator";
-import StartButton from "./Taskbar/StartButton";
-import Clock from "./Taskbar/Clock";
-import Task from "./Taskbar/Task";
-import { useWindowState } from "../hooks/useWindowStates";
-import { windowNames } from "../data/Consts";
-import QuickLaunch from "./Taskbar/QuickLaunch";
+import Separator from "../Taskbar/Separator";
+import StartButton from "../Taskbar/StartButton";
+import Clock from "../Taskbar/Clock";
+import Task from "../Taskbar/Task";
+import { useWindowState } from "../../hooks/useWindowStates";
+import { windowNames } from "../../data/Consts";
+import QuickLaunch from "../Taskbar/QuickLaunch";
 
 const Taskbar: React.FC = () => {
     const { activeWindows } = useWindowState();

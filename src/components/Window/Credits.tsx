@@ -1,6 +1,6 @@
 import React from "react";
-import { Window } from "../Window";
-import Button from "../Button";
+import { Window } from "../UI/Window";
+import Button from "../UI/Button";
 
 const CreditsWindow: React.FC = () => {
     return (

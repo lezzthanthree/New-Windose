@@ -1,6 +1,6 @@
 import React from "react";
-import RestartingEffect from "./Effects/Restarting";
-import { useFXState } from "../hooks/useFX";
+import RestartingEffect from "../Effects/Restarting";
+import { useFXState } from "../../hooks/useFX";
 
 const Effects: React.FC = () => {
     const { restarting } = useFXState();

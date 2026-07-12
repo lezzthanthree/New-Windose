@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpeedDialState } from "../hooks/useSpeedDial";
+import { useSpeedDialState } from "../../hooks/useSpeedDial";
 
 interface InputBoxProps {
     placeholder?: string;

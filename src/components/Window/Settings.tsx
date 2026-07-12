@@ -1,5 +1,5 @@
 import React from "react";
-import { Window } from "../Window";
+import { Window } from "../UI/Window";
 import SpeedDialSettings from "../Settings/Group/SpeedDialSettings";
 import GeneralSettings from "../Settings/Group/GeneralSettings";
 

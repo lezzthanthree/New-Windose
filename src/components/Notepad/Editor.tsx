@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNotesState } from "../../hooks/useNotes";
-import Button from "../Button";
+import Button from "../UI/Button";
 import NoteNotFound from "./NoteNotFound";
 
 const Editor: React.FC = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Window } from "../Window";
+import { Window } from "../UI/Window";
 import { useNotesState } from "../../hooks/useNotes";
 import NoteMenu from "../Notepad/NoteMenu";
 import Editor from "../Notepad/Editor";

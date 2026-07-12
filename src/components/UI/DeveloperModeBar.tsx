@@ -1,6 +1,6 @@
 import React from "react";
-import { useExperimentalState } from "../hooks/useExperimental";
-import { useWindowState } from "../hooks/useWindowStates";
+import { useExperimentalState } from "../../hooks/useExperimental";
+import { useWindowState } from "../../hooks/useWindowStates";
 
 const DeveloperModeBar: React.FC = () => {
     const { experimental } = useExperimentalState();

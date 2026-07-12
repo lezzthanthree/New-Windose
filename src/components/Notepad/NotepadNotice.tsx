@@ -1,6 +1,6 @@
 import localforage from "localforage";
 import React, { useEffect, useState } from "react";
-import Button from "../Button";
+import Button from "../UI/Button";
 
 interface NotepadNoticeProps {
     message?: string;

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useExperimentalState } from "../hooks/useExperimental";
+import { useExperimentalState } from "../../hooks/useExperimental";
 
 const ErrorFallback = ({ error }: { error: Error }) => {
     const { experimental } = useExperimentalState();

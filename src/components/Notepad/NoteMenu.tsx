@@ -1,6 +1,6 @@
 import React from "react";
 import { useNotesState } from "../../hooks/useNotes";
-import Button from "../Button";
+import Button from "../UI/Button";
 import Separator from "./Separator";
 import DetailedNote from "./DetailedNote";
 import NoFiles from "./NoFiles";

@@ -1,5 +1,5 @@
 import React from "react";
-import { useExperimentalState } from "../hooks/useExperimental";
+import { useExperimentalState } from "../../hooks/useExperimental";
 
 const MobileViewNotification: React.FC = () => {
     const { experimental } = useExperimentalState();
