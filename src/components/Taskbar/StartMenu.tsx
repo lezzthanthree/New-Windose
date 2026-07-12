@@ -21,7 +21,7 @@ const StartMenu: React.FC = () => {
     return (
         <div
             id="start-menu"
-            className="absolute left-0 transition-all flex flex-row"
+            className="absolute left-0 transition-all flex flex-row z-999999"
             style={{ bottom: active ? "50px" : `-${height}px` }}
             ref={ref}
         >

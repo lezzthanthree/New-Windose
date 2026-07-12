@@ -12,7 +12,7 @@ const Taskbar: React.FC = () => {
 
     return (
         <div
-            className="w-full bg-nso-light-purple border-t-2 border-t-white flex flex-row gap-2 items-center p-1 z-999999999 overflow-hidden"
+            className="w-full bg-nso-light-purple border-t-2 border-t-white flex flex-row gap-2 items-center p-1 z-9999999999 overflow-hidden"
             id="taskbar"
         >
             <StartButton />

@@ -7,7 +7,7 @@ const MobileViewNotification: React.FC = () => {
     if (experimental) return;
 
     return (
-        <div className="absolute w-full h-full bg-[#000000ee] z-9999999999999 lg:hidden flex flex-col justify-center items-center align-middle text-nso-white   text-2xl p-4">
+        <div className="absolute w-full h-full bg-[#000000ee] z-999999999999999 lg:hidden flex flex-col justify-center items-center align-middle text-nso-white   text-2xl p-4">
             <p className="text-center">
                 This application doesn't fully support mobile yet.
             </p>
