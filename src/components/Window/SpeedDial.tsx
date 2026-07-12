@@ -8,7 +8,7 @@ import { useClock } from "../../hooks/useClock";
 const SpeedDialWindow: React.FC = () => {
     const { activeWindows, openWindow } = useWindowState();
     const { speedDial, settings, initializeSpeedDial } = useSpeedDialState();
-    const { weekday, dateComplete, hour24complete } = useClock();
+    const { weekday, dateLong, timeLong } = useClock();
 
     useEffect(() => {
         const event = (events: KeyboardEvent) => {
@@ -45,8 +45,8 @@ const SpeedDialWindow: React.FC = () => {
                     <p className="  text-2xl">
                         {settings?.description
                             .replace("{day}", weekday)
-                            .replace("{date}", dateComplete)
-                            .replace("{time}", hour24complete)}
+                            .replace("{date}", dateLong)
+                            .replace("{time}", timeLong)}
                     </p>
                 </div>
                 <div id="apps" className="flex flex-col gap-1">

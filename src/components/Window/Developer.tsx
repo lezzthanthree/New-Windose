@@ -14,7 +14,7 @@ const Crash: React.FC = () => {
     return <></>;
 };
 
-const Developer: React.FC = () => {
+const DeveloperWindow: React.FC = () => {
     const [crash, setCrash] = useState(false);
     return (
         <Window title="Developer Mode" id="developer" x={50} y={50}>
@@ -54,4 +54,4 @@ const Developer: React.FC = () => {
     );
 };
 
-export default Developer;
+export default DeveloperWindow;

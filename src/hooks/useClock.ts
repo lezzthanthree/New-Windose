@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export const useClock = () => {
     const [clock, setClock] = useState<Date>(new Date());
+    const [hour24] = useState<boolean>(true);
 
     useEffect(() => {
         const interval = window.setInterval(() => {
@@ -14,45 +15,34 @@ export const useClock = () => {
     if (!clock) {
         return {
             clock: new Date(),
-            hour12: "",
-            hour24: "",
-            hour12complete: "",
-            hour24complete: "",
+            timeShort: "",
+            timeLong: "",
             weekday: "",
-            date: "",
-            dateComplete: "",
+            dateShort: "",
+            dateLong: "",
         };
     }
 
     return {
         clock,
-        hour12: clock.toLocaleTimeString([], {
-            hour: "numeric",
+        timeShort: clock.toLocaleTimeString([], {
+            hour: hour24 ? "2-digit" : "numeric",
             minute: "2-digit",
+            hour12: !hour24,
         }),
-        hour24: clock.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false,
-        }),
-        hour12complete: clock.toLocaleTimeString([], {
-            hour: "numeric",
+        timeLong: clock.toLocaleTimeString([], {
+            hour: hour24 ? "2-digit" : "numeric",
             minute: "2-digit",
             second: "2-digit",
-        }),
-        hour24complete: clock.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-            hour12: false,
+            hour12: !hour24,
         }),
         weekday: clock.toLocaleDateString([], { weekday: "long" }),
-        date: clock.toLocaleDateString([], {
+        dateShort: clock.toLocaleDateString([], {
             month: "numeric",
             day: "numeric",
             year: "numeric",
         }),
-        dateComplete: clock.toLocaleDateString([], {
+        dateLong: clock.toLocaleDateString([], {
             month: "long",
             day: "numeric",
             year: "numeric",

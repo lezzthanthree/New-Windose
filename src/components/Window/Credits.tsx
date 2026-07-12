@@ -2,7 +2,7 @@ import React from "react";
 import { Window } from "../Window";
 import Button from "../Button";
 
-const Credits: React.FC = () => {
+const CreditsWindow: React.FC = () => {
     return (
         <Window title="Credits" id="credits">
             <div className="w-2xl flex flex-col gap-4 h-[60vh] p-4 overflow-y-scroll">
@@ -61,4 +61,4 @@ const Credits: React.FC = () => {
     );
 };
 
-export default Credits;
+export default CreditsWindow;

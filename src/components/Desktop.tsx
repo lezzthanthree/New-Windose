@@ -4,9 +4,9 @@ import { useWindowState } from "../hooks/useWindowStates";
 import SpeedDialWindow from "./Window/SpeedDial";
 import SearchWindow from "./Window/Search";
 import NotepadWindow from "./Window/Notepad";
-import Settings from "./Window/Settings";
-import Developer from "./Window/Developer";
-import Credits from "./Window/Credits";
+import SettingsWindow from "./Window/Settings";
+import DeveloperWindow from "./Window/Developer";
+import CreditsWindow from "./Window/Credits";
 
 const Desktop: React.FC = () => {
     const { activeWindows, openWindow } = useWindowState();
@@ -57,17 +57,17 @@ const Desktop: React.FC = () => {
                 className="inset-0 flex absolute pointer-events-none"
             >
                 {activeWindows.includes("notepad") && <NotepadWindow />}
-                {activeWindows.includes("developer") && <Developer />}
+                {activeWindows.includes("developer") && <DeveloperWindow />}
             </div>
 
             <div
                 id="center-window-area"
                 className="inset-0 flex absolute justify-center items-center pointer-events-none"
             >
-                {activeWindows.includes("settings") && <Settings />}
+                {activeWindows.includes("settings") && <SettingsWindow />}
                 {activeWindows.includes("speedDial") && <SpeedDialWindow />}
                 {activeWindows.includes("search") && <SearchWindow />}
-                {activeWindows.includes("credits") && <Credits />}
+                {activeWindows.includes("credits") && <CreditsWindow />}
             </div>
         </div>
     );
