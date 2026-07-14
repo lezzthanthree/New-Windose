@@ -1,4 +1,4 @@
-# Needy Streamer Overload (New Tab Start Page)
+# New Windose
 A simple new tab start page with the Needy Streamer Overload Desktop Theme.
 
 ![Screenshot](./public/Preview.png)
@@ -15,4 +15,4 @@ This project is in heavy development.
 - [X] Customizable Speed Dial (title, icons, and links)
 - [ ] Allow selection of search engine (Google, DuckDuckGo, Bing, etc.)
 - [ ] Change background image 
-- [ ] 12/24 hour clock option
+- [X] 12/24 hour clock option
